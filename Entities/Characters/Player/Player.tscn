@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Sprite-0001.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/pistola.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Sprite-0001.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/gordo.png" type="Texture" id=4]
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -38,17 +40,23 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="RightWeapon" type="Node2D" parent="body"]
+[node name="RightWeapon" type="Position2D" parent="body"]
+editor/display_folded = true
+position = Vector2( 0, -0.110184 )
 
-[node name="LeftWeapon" type="Node2D" parent="body"]
+[node name="Sprite" type="Sprite" parent="body/RightWeapon"]
+position = Vector2( 0.156363, -0.233074 )
+scale = Vector2( 0.140754, 0.107106 )
+texture = ExtResource( 2 )
+
+[node name="LeftWeapon" type="Position2D" parent="body"]
 
 [node name="Bodies" type="Node2D" parent="body"]
 visible = false
 
 [node name="StandardSprite" type="Sprite" parent="body/Bodies"]
 rotation = 1.5708
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
+texture = ExtResource( 3 )
 
 [node name="StandardCollisionShape" type="CollisionPolygon2D" parent="body/Bodies"]
 rotation = 1.5708
@@ -58,14 +66,27 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="GordoSprite" type="Sprite" parent="body/Bodies"]
 rotation = 1.5708
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="GordoCollisionShape" type="CollisionPolygon2D" parent="body/Bodies"]
+position = Vector2( 0.242985, -0.566963 )
 rotation = 1.5708
 build_mode = 0
-polygon = PoolVector2Array( -9, -1, -4, -6, 4.93678, -4.83881, 5.63609, 2.85347, 3.36337, 6.00031, -4, 6, -9, 2 )
+polygon = PoolVector2Array( -11.2902, -3.91442, -0.8419, -6.99222, 9.36344, -3.59044, 9.36344, 5.15699, 1.99292, 10.2597, -7.80745, 9.36871, -12.9911, 2.97013 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="StandardLeftWeaponPoint" type="Position2D" parent="body/Bodies"]
+position = Vector2( 3.46252, -8.15617 )
+
+[node name="GordoLeftWeaponPoint" type="Position2D" parent="body/Bodies"]
+position = Vector2( 2.3286, -12.1249 )
+
+[node name="StandardRightWeaponPoint" type="Position2D" parent="body/Bodies"]
+position = Vector2( 3.00086, 6.30949 )
+
+[node name="GordoRightWeaponPoint" type="Position2D" parent="body/Bodies"]
+position = Vector2( 3.40583, 8.98231 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("..")

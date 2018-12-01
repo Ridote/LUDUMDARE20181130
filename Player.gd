@@ -1,5 +1,8 @@
 extends "res://Entities/Characters/Character.gd"
 
+var currentBodyName = ""
+var changingBody = false
+
 func _ready():
 	changeBody("Standard")
 	add_to_group(Constants.G_PLAYER)
@@ -27,6 +30,11 @@ func read_input():
 	if Input.is_action_pressed("ui_down"):
 		target_vel.y = 1
 		
+	if Input.is_key_pressed(KEY_G):
+		changeBody("Gordo")
+	if Input.is_key_pressed(KEY_H) and !changingBody:
+		changeBody("Standard")
+		
 	target_vel = target_vel.normalized()
 
 func process_skills():
@@ -38,19 +46,29 @@ func leftAttack():
 		children[0].attack()
 		
 func changeBody(name):
+	if currentBodyName == name:
+		return
+	changingBody = true
+	print("changeBody", name)
 	var children = $body.get_children()
 	for child in children:
-		if "Sprite" in child.get_name() or "CollisionShape" in child.get_name():
+		if currentBodyName in child.get_name():
+			print("borrando", child.get_name())
 			$body.remove_child(child)
+			$body/Bodies.add_child(child)
+	currentBodyName = name
 	var bodies = $body/Bodies.get_children()
 	for node in bodies:
-		if name in node.get_name():
+		if name in node.get_name() and "LeftWeaponPoint" in node.get_name():
+			$body/LeftWeapon.position = node.position;
+		elif name in node.get_name() and "RightWeaponPoint" in node.get_name():
+			$body/RightWeapon.position = node.position;
+		elif name in node.get_name():
 			$body/Bodies.remove_child(node)
 			$body.add_child(node)
-			$body.set_owner(node)
+	changingBody = false
 
 func animate():
-	
 	pass
 
 func process_collisions():

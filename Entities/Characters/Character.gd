@@ -19,7 +19,6 @@ var externalImpulse = Vector2()
 var HP : float
 var stamina : float
 var armor : int
-var weapon : Object
 
 func _ready():
 	add_to_group(Constants.G_CHARACTER)

@@ -19,6 +19,10 @@ config/name="LUDUMDARE20181130"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Constants="*res://Entities/Autoloads/Constants.gd"
+
 [debug]
 
 gdscript/warnings/treat_warnings_as_errors=true

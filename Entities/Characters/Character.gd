@@ -1,11 +1,51 @@
+#warnings-disable
 extends Node
 
-var HP : int = 0
-var stamina : int = 0
+const FLOOR_NORMAL = Vector2(0, 1)
+var SLOPE_SLIDE_STOP = 25.0
+var WALK_SPEED = 150 # pixels/sec
+var SIDING_CHANGE_SPEED = 10
+
+var EXTERNAL_IMPULSE = 4000
+var IMPULSE_MITIGATION_FACTOR = 2
+
+var MAX_SPEED_AND_IMPULSE = 400
+
+var linear_vel = Vector2()
+var target_vel = Vector2()
+
+var externalImpulse = Vector2()
+
+var HP : float
+var stamina : float
+var armor : int
+var weapon : Object
 
 func _ready():
 	add_to_group(Constants.G_CHARACTER)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func move(_delta : float, dir : Vector2, body : KinematicBody2D):
+	target_vel *= WALK_SPEED
+	linear_vel.x = lerp(linear_vel.x, target_vel.x + externalImpulse.x, 0.1)
+	linear_vel.y = lerp(linear_vel.y, target_vel.y + externalImpulse.y, 0.1)
+	
+	#We clamp the linear velocity
+	linear_vel = linear_vel.clamped(MAX_SPEED_AND_IMPULSE)
+	linear_vel = body.move_and_slide(linear_vel, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
+	externalImpulse /= IMPULSE_MITIGATION_FACTOR
+
+func getGlobalPosition() -> Vector2:
+	OS.alert(get_name() + " getGlobalPosition not implemented", "Implementation error")
+	return Vector2()
+func getOrientation() -> float:
+	OS.alert(get_name() + " getOrientation not implemented", "Implementation error")
+	return 0.0
+func receiveDmg(val : float = 1.0) -> void:
+	OS.alert(get_name() + " receiveDmg not implemented", "Implementation error")
+func shoot() -> void:
+	OS.alert(get_name() + " shoot not implemented", "Implementation error")
+func getWeapon() -> Object:
+	OS.alert(get_name() + " getWeapon not implemented", "Implementation error")
+	return Object()
+func die() -> void:
+	OS.alert(get_name() + " die not implemented", "Implementation error")

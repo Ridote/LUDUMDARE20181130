@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gordo.png-898a27e6e2218844a10a91ac9ffde058.stex"
+path="res://.import/bullets.png-5cad11b777761714953fbbfd0b813394.stex"
 
 [deps]
 
-source_file="res://Graphics/gordo.png"
-dest_files=[ "res://.import/gordo.png-898a27e6e2218844a10a91ac9ffde058.stex" ]
+source_file="res://Graphics/bullets.png"
+dest_files=[ "res://.import/bullets.png-5cad11b777761714953fbbfd0b813394.stex" ]
 
 [params]
 

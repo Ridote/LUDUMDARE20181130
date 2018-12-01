@@ -16,13 +16,8 @@ var reloading = false
 func _ready():
 	add_to_group(Constants.G_WEAPON)
 
-func _process(_delta):
-	if(Input.is_action_pressed("ui_accept")):
-		attack()
-
-func init(_weaponType, _position : Vector2, _parent : Object) -> void:
+func init(_weaponType, _parent : Object) -> void:
 	parent = _parent
-	global_position = _position
 	rotation = parent.getOrientation()
 	
 	#We update the group depending on if the parent is an enemy or a player

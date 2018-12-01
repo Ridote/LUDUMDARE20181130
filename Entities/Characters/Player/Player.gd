@@ -11,7 +11,7 @@ func _ready():
 	#This is how we create a wepon. Feel free to put this in a function if you don't like it like this, cause you probably will use it in different places
 	var leftWeapon = weaponFactory.instance()
 	$body/LeftWeapon.add_child(leftWeapon)
-	leftWeapon.init(Constants.WEAPON_TYPE.PISTOL, $body/LeftWeapon.global_position, self)
+	leftWeapon.init(Constants.WEAPON_TYPE.PISTOL, self)
 	
 func _physics_process(delta):
 	read_input()

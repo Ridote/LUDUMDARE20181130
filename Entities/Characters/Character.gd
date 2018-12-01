@@ -1,5 +1,5 @@
 #warnings-disable
-extends Node
+extends Node2D
 
 const FLOOR_NORMAL = Vector2(0, 1)
 var SLOPE_SLIDE_STOP = 25.0
@@ -24,7 +24,7 @@ var weapon : Object
 func _ready():
 	add_to_group(Constants.G_CHARACTER)
 
-func move(_delta : float, dir : Vector2, body : KinematicBody2D):
+func move(_delta : float, body : KinematicBody2D):
 	target_vel *= WALK_SPEED
 	linear_vel.x = lerp(linear_vel.x, target_vel.x + externalImpulse.x, 0.1)
 	linear_vel.y = lerp(linear_vel.y, target_vel.y + externalImpulse.y, 0.1)
@@ -34,6 +34,9 @@ func move(_delta : float, dir : Vector2, body : KinematicBody2D):
 	linear_vel = body.move_and_slide(linear_vel, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
 	externalImpulse /= IMPULSE_MITIGATION_FACTOR
 
+
+func getMousePosition():
+	return get_global_mouse_position()
 func getGlobalPosition() -> Vector2:
 	OS.alert(get_name() + " getGlobalPosition not implemented", "Implementation error")
 	return Vector2()

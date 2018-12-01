@@ -12,13 +12,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
-
-[node name="Sprite" type="Sprite" parent="body"]
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="body"]
-build_mode = 0
-polygon = PoolVector2Array( -9, -1, -4, -6, 5, -4, 5, 5, 3, 6, -4, 6, -9, 2 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="body"]
 anchor_mode = 1
@@ -43,4 +37,41 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
+
+[node name="RightWeapon" type="Node2D" parent="body"]
+
+[node name="LeftWeapon" type="Node2D" parent="body"]
+
+[node name="Bodies" type="Node2D" parent="body"]
+visible = false
+
+[node name="StandardSprite" type="Sprite" parent="body/Bodies"]
+rotation = 1.5708
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StandardCollisionShape" type="CollisionPolygon2D" parent="body/Bodies"]
+rotation = 1.5708
+build_mode = 0
+polygon = PoolVector2Array( -9, -1, -4, -6, 4.93678, -4.83881, 5.63609, 2.85347, 3.36337, 6.00031, -4, 6, -9, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GordoSprite" type="Sprite" parent="body/Bodies"]
+rotation = 1.5708
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="GordoCollisionShape" type="CollisionPolygon2D" parent="body/Bodies"]
+rotation = 1.5708
+build_mode = 0
+polygon = PoolVector2Array( -9, -1, -4, -6, 4.93678, -4.83881, 5.63609, 2.85347, 3.36337, 6.00031, -4, 6, -9, 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+blend_times = [  ]
 

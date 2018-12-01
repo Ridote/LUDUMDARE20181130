@@ -9,29 +9,29 @@ func _ready():
 	add_to_group(Constants.G_BULLET)
 
 func _physics_process(_delta):
-	$body.apply_impulse(Vector2(0,0), direction*speed)
+	$body.apply_impulse(Vector2(0,0), direction*speed*Constants.bullet_speed_amplification)
 
 func init(_bulletType, position : Vector2, parent : Object) -> void:
-	$body.position = position
+	$body.global_position = position
 	$body.rotation = parent.getOrientation()
 
 	#We update the masks and layers for collisions depending on the parent
-	if(parent.is_in_group(Constants.G_ENEMY)):
+	if(parent.is_in_group(Constants.G_WEAPON_ENEMY)):
 		$body.collision_layer = 8 #I am bullet enemy
 		$body.collision_mask = 1 #I crash into player
 		add_to_group(Constants.G_BULLET_ENEMY)
-	elif(parent.is_in_group(Constants.G_PLAYER)):
+	elif(parent.is_in_group(Constants.G_WEAPON_PLAYER)):
 		$body.collision_layer = 4 #I am bullet player
 		$body.collision_mask = 2 #I crash into enemy
 		add_to_group(Constants.G_BULLET_PLAYER)
 	else:
-		OS.alert(get_name() + " init: Parent is not an enemy or a player", "Implementation error")
+		OS.alert(get_name() + " init: Parent is not a weapon", "Implementation error")
 
 	#We need to create the bullet depending on the type with specific attributes
 	bulletType = _bulletType
 	$AnimationPlayer.play(Constants.BULLET_TYPE_ANIM[_bulletType])
 	var attrs = Constants.BULLET_ATTRIBUTES[_bulletType]
-	damage = attrs["BulletType"]
+	damage = attrs["Damage"]
 	speed = attrs["Speed"]
 	penetration = attrs["Penetration"]
 

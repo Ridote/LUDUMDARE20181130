@@ -19,7 +19,7 @@ const BULLET_ATTRIBUTES = {
 enum WEAPON_TYPE{PISTOL}
 const WEAPON_TYPE_ANIM = {PISTOL : "Pistol"}
 const WEAPON_ATTRIBUTES = {
-	WEAPON_TYPE.PISTOL	: {"ReloadTime" : 5,	"MagazineSize" : 2, "BulletType" : BULLET_TYPE.STANDARD}
+	WEAPON_TYPE.PISTOL	: {"ReloadTime" : 5,	"FireRate" : 0.1, "MagazineSize" : 2, "BulletType" : BULLET_TYPE.STANDARD}
 }
 
 const G_CHARACTER = "Character"
@@ -31,3 +31,5 @@ const G_WEAPON_ENEMY = "WeaponEnemy"
 const G_BULLET = "Bullet"
 const G_BULLET_PLAYER = "BulletPlayer"
 const G_BULLET_ENEMY = "BulletEnemy"
+
+const bullet_speed_amplification = 200

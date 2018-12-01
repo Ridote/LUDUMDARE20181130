@@ -1,4 +1,5 @@
 extends "res://Entities/Characters/Character.gd"
+var weaponFactory = preload("res://Entities/Weapons/Weapon.tscn")
 
 var currentBodyName = ""
 var changingBody = false
@@ -6,7 +7,12 @@ var changingBody = false
 func _ready():
 	changeBody("Standard")
 	add_to_group(Constants.G_PLAYER)
-
+	
+	#This is how we create a wepon. Feel free to put this in a function if you don't like it like this, cause you probably will use it in different places
+	var leftWeapon = weaponFactory.instance()
+	$body/LeftWeapon.add_child(leftWeapon)
+	leftWeapon.init(Constants.WEAPON_TYPE.PISTOL, $body/LeftWeapon.global_position, self)
+	
 func _physics_process(delta):
 	read_input()
 	process_skills()
@@ -29,7 +35,8 @@ func read_input():
 		target_vel.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		target_vel.y = 1
-		
+	if Input.is_action_pressed("ui_left_click"):
+		leftAttack()
 	if Input.is_key_pressed(KEY_G):
 		changeBody("Gordo")
 	if Input.is_key_pressed(KEY_H) and !changingBody:
@@ -42,7 +49,7 @@ func process_skills():
 
 func leftAttack():
 	var children = $body/LeftWeapon.get_children()
-	if children.length > 0:
+	if children.size() > 0:
 		children[0].attack()
 		
 func changeBody(name):

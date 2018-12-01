@@ -15,9 +15,15 @@ _global_script_class_icons={
 
 [application]
 
-config/name="aa"
+config/name="LUDUMDARE20181130"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/treat_warnings_as_errors=true
+gdscript/warnings/unsafe_cast=true
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 

@@ -2,5 +2,3 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
-

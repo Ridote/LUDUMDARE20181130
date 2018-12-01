@@ -13,6 +13,7 @@ We need top down graphics for:
     - Fire
     - Water
     - Poisonous gas
+    - Blood explosion
   - Props
     - Keys
     - Doors

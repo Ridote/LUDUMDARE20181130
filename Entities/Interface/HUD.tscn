@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Themes/HUD.tres" type="Theme" id=1]
+[ext_resource path="res://Audio/music/theme-3.ogg" type="AudioStream" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -431,4 +432,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 2 )
+volume_db = -10.0
+pitch_scale = 1.0
+autoplay = true
+stream_paused = false
+mix_target = 0
+bus = "Master"
 

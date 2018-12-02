@@ -2,9 +2,15 @@ extends "res://Entities/Characters/Character.gd"
 var weaponFactory = preload("res://Entities/Weapons/Weapon.tscn")
 
 var character = Constants.PLAYER_TYPE.RED
-var previousAnimation = ""
+var previousAnimation : String = ""
+
+var throwAmoeba : bool = false
+var amoebaOnAir : bool = false
+var amoeba : Object = null
 
 func _ready():
+	amoeba = $body/Amoeba
+	amoeba.init(self)
 	init_player(character)
 	changeBody(character)
 	add_to_group(Constants.G_PLAYER)
@@ -56,11 +62,18 @@ func read_input():
 		changeBody(Constants.BIG)
 	if Input.is_key_pressed(KEY_H):
 		changeBody(Constants.BLUE)
-		
+	if Input.is_action_pressed("ui_throw_amoeba") && !amoebaOnAir:
+		throwAmoeba = true
+
 	target_vel = target_vel.normalized()
 
 func process_skills():
-	pass
+	if(throwAmoeba):
+		throwAmoeba = false
+		amoebaOnAir = true
+		$body.remove_child(amoeba)
+		get_tree().get_root().add_child(amoeba)
+		amoeba.eat(Vector2(cos($body.rotation), sin($body.rotation)), $body.global_position)
 
 func leftAttack():
 	var children = $body/LeftWeapon.get_children()

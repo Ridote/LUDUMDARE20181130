@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Graphics/Tileset/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Entities/Characters/Enemies/Enemy.tscn" type="PackedScene" id=2]
 
 [node name="Map" type="Node2D"]
 
@@ -41,4 +42,16 @@ collision_mask = 15
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 393218, 13, 0, 393234, 13, 0 )
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 283, 212 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 157, 193 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 165, 99 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 366, 41 )
 

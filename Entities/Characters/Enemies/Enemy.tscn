@@ -1,4 +1,32 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/Characters/Enemies/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Sprites/body-red.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Sprites/head.png" type="Texture" id=3]
 
 [node name="Enemy" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="body" type="KinematicBody2D" parent="."]
+input_pickable = false
+collision_layer = 2
+collision_mask = 53
+collision/safe_margin = 0.08
+motion/sync_to_physics = false
+
+[node name="RightWeapon" type="Position2D" parent="body"]
+
+[node name="LeftWeapon" type="Position2D" parent="body"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
+build_mode = 0
+polygon = PoolVector2Array( -19.2219, -3.89867, -15.1396, 2.48644, 14.5878, 2.80046, 19.1934, -2.53791, 16.1579, -7.14357, -0.903984, -12.1679, -11.5807, -7.24824 )
+
+[node name="SpriteBody" type="Sprite" parent="body"]
+texture = ExtResource( 2 )
+hframes = 3
+
+[node name="SpriteHead" type="Sprite" parent="body/SpriteBody"]
+texture = ExtResource( 3 )
+hframes = 4
 

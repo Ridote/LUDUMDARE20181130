@@ -37,12 +37,13 @@ const WEAPON_ATTRIBUTES = {
 
 const G_CHARACTER = "Character"
 const G_PLAYER = "Player"
-const G_ENEMY = "Character"
+const G_ENEMY = "Enemy"
 const G_WEAPON = "Weapon"
 const G_WEAPON_PLAYER = "WeaponPlayer"
 const G_WEAPON_ENEMY = "WeaponEnemy"
 const G_BULLET = "Bullet"
 const G_BULLET_PLAYER = "BulletPlayer"
 const G_BULLET_ENEMY = "BulletEnemy"
+const G_AMOEBA = "Amoeba"
 
 const bullet_speed_amplification = 200

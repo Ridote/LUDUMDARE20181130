@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/weapon.png-7137943f97761ac153f195bbe9e31233.stex"
+path="res://.import/player_pumpgun_stand.png-c9f9ed8affd904bb2034c2396450b71b.stex"
 
 [deps]
 
-source_file="res://Graphics/weapon.png"
-dest_files=[ "res://.import/weapon.png-7137943f97761ac153f195bbe9e31233.stex" ]
+source_file="res://Graphics/ShitOnTheList/player_pumpgun_stand.png"
+dest_files=[ "res://.import/player_pumpgun_stand.png-c9f9ed8affd904bb2034c2396450b71b.stex" ]
 
 [params]
 

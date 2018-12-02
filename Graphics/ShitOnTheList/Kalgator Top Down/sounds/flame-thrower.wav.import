@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flame-thrower.wav-d4ac94363c0b2acf93469bef8fda6036.sample"
+
+[deps]
+
+source_file="res://Graphics/ShitOnTheList/Kalgator Top Down/sounds/flame-thrower.wav"
+dest_files=[ "res://.import/flame-thrower.wav-d4ac94363c0b2acf93469bef8fda6036.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

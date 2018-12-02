@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pistola.png-a17956f925010abeda962e7c5a03e8f7.stex"
+path="res://.import/meteor-1.png-f7b037cc30150976a32588cd0009e4b8.stex"
 
 [deps]
 
-source_file="res://Graphics/pistola.png"
-dest_files=[ "res://.import/pistola.png-a17956f925010abeda962e7c5a03e8f7.stex" ]
+source_file="res://Graphics/ShitOnTheList/Kalgator Top Down/background/space/meteor-1.png"
+dest_files=[ "res://.import/meteor-1.png-f7b037cc30150976a32588cd0009e4b8.stex" ]
 
 [params]
 
@@ -17,7 +17,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

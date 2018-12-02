@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death.wav-6fd5ef0674e57fea37176a55fef9c355.sample"
+
+[deps]
+
+source_file="res://Graphics/ShitOnTheList/Kalgator Top Down/sounds/death.wav"
+dest_files=[ "res://.import/death.wav-6fd5ef0674e57fea37176a55fef9c355.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

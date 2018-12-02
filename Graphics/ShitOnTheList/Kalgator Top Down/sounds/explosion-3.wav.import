@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/explosion-3.wav-c33578844e6ec59965b71a0644436df8.sample"
+
+[deps]
+
+source_file="res://Graphics/ShitOnTheList/Kalgator Top Down/sounds/explosion-3.wav"
+dest_files=[ "res://.import/explosion-3.wav-c33578844e6ec59965b71a0644436df8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

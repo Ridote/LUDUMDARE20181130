@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cure.wav-420f10bd9a953b47ae4c10112d575c6d.sample"
+
+[deps]
+
+source_file="res://Graphics/ShitOnTheList/Kalgator Top Down/sounds/cure.wav"
+dest_files=[ "res://.import/cure.wav-420f10bd9a953b47ae4c10112d575c6d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -18,11 +18,11 @@ func init(_bulletType, position : Vector2, parent : Object) -> void:
 	#We update the masks and layers for collisions depending on the parent
 	if(parent.is_in_group(Constants.G_WEAPON_ENEMY)):
 		$body.collision_layer = 8 #I am bullet enemy
-		$body.collision_mask = 1 #I crash into player
+		$body.collision_mask = 1 | 16 #I crash into player and walls
 		add_to_group(Constants.G_BULLET_ENEMY)
 	elif(parent.is_in_group(Constants.G_WEAPON_PLAYER)):
 		$body.collision_layer = 4 #I am bullet player
-		$body.collision_mask = 2 #I crash into enemy
+		$body.collision_mask = 2 | 16#I crash into enemy
 		add_to_group(Constants.G_BULLET_PLAYER)
 	else:
 		OS.alert(get_name() + " init: Parent is not a weapon", "Implementation error")

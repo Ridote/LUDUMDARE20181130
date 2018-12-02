@@ -21,11 +21,13 @@ func _physics_process(delta):
 	if !bEat:
 		return
 	move(delta, $body)
+	process_collisions()
 
 func eat(_direction : Vector2, position : Vector2):
 	bEat = true
 	direction = _direction
 	$body.global_position = position
+	$AmoebaOnAir.start()
 
 func move(_delta : float, body : KinematicBody2D):
 	linear_vel = WALK_SPEED*direction
@@ -36,8 +38,22 @@ func process_collisions():
 	for i in range($body.get_slide_count()):
 		collider = $body.get_slide_collision(i).get_collider().get_parent()
 		if(collider.is_in_group(Constants.G_ENEMY)):
-			print("Amoeba collision!!")
-			queue_free()
-
+			$AmoebaOnAir.stop()
+			bEat = false
+			
+			parent.setEnemyStats(collider.HP, collider.character, collider.getRightWeapon(), collider.getLeftWeapon(), collider.getGlobalPosition(), collider.getOrientation())
+			collider.queue_free()
+			parent.goVisibleAndGrabAmoeba()
+			
+			
+			
 func activateCamera():
 	$body/Camera2D.current = true
+
+func setPosition(position : Vector2):
+	$body.position = position
+func setRotation(rotation : float):
+	$body.rotation = rotation
+
+func _on_AmoebaOnAir_timeout():
+	print("Should die")

@@ -41,6 +41,12 @@ func init(_weaponType, _parent : Object) -> void:
 	
 	$Reload.wait_time = reloadTime
 	$FireRate.wait_time = fireRate
+func setParent(_parent : Object) -> void:
+	parent = _parent
+	if(is_in_group(Constants.G_WEAPON_ENEMY)):
+		remove_from_group(Constants.G_WEAPON_ENEMY)
+	add_to_group(Constants.G_WEAPON_PLAYER)
+	
 	
 func attack() -> void:
 	if bullets <= 0:

@@ -18,6 +18,7 @@ var target_vel = Vector2()
 
 var externalImpulse = Vector2()
 
+var character = Constants.PLAYER_TYPE.RED
 var HP : float = 100.0
 var maxHP : float = 100.0
 var stamina : float = 100.0

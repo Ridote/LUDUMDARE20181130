@@ -40,6 +40,7 @@ func init(_bulletType, position : Vector2, parent : Object) -> void:
 	direction.y = sin($body.rotation)
 
 func _on_body_body_entered(body):
+	
 	print("I am a bullet and I fucking collided beibi, with " + body.get_parent().get_name())
 	queue_free()
 

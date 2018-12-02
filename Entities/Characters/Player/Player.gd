@@ -1,7 +1,7 @@
 extends "res://Entities/Characters/Character.gd"
 var weaponFactory = preload("res://Entities/Weapons/Weapon.tscn")
+var bloodFactory = preload("res://Entities/Blood.tscn")
 
-var character = Constants.PLAYER_TYPE.RED
 var previousAnimation : String = ""
 
 var throwAmoeba : bool = false
@@ -9,6 +9,7 @@ var amoebaOnAir : bool = false
 var amoeba : Object = null
 
 func _ready():
+	enableCollisions()
 	amoeba = $body/Amoeba
 	amoeba.init(self)
 	init_player(character)
@@ -35,6 +36,8 @@ func init_player(_playerType) -> void:
 	updateSpeed(speed)
 
 func _physics_process(delta):
+	if(amoebaOnAir):
+		return
 	read_input()
 	process_skills()
 	move(delta, $body)
@@ -74,6 +77,13 @@ func process_skills():
 		$body.remove_child(amoeba)
 		get_tree().get_root().add_child(amoeba)
 		amoeba.eat(Vector2(cos($body.rotation), sin($body.rotation)), $body.global_position)
+		amoeba.activateCamera()
+		
+		$body.visible = false
+		
+		var blood = bloodFactory.instance()
+		get_tree().get_root().add_child(blood)
+		blood.global_position = $body.global_position
 
 func leftAttack():
 	var children = $body/LeftWeapon.get_children()
@@ -142,3 +152,35 @@ func updateArmor(val : int) -> void:
 func updateSpeed(val : float) -> void:
 	speed = val
 	$HUD/Control/VBoxContainer/HBoxContainer/SpeedValue.text = str(speed)
+
+func dissableCollisions():
+	$body.collision_mask = 0
+	$body.collision_layer = 0
+
+func enableCollisions():
+	$body.collision_layer = 1 # Player
+	$body.collision_mask = 2 | 8 | 16 #Enemy, Bullet Enemy and Wall
+
+func setEnemyStats(currentHP : float, characterType, rightWeapon : Object, leftWeapon : Object, position : Vector2, orientation : float) -> void:
+	init_player(characterType)
+	HP = currentHP
+	if($body/RightWeapon.get_child_count() > 0):
+		$body/RightWeapon.get_child(0).queue_free()
+	if($body/LeftWeapon.get_child_count() > 0):
+		$body/LeftWeapon.get_child(0).queue_free()
+	if(rightWeapon != null):
+		rightWeapon.setParent(self)
+		$body/RightWeapon.add_child(rightWeapon)
+	if(leftWeapon != null):
+		leftWeapon.setParent(self)
+		$body/LeftWeapon.add_child(leftWeapon)
+	$body.global_position = position
+	$body.rotation = orientation
+
+func goVisibleAndGrabAmoeba():
+	get_tree().get_root().remove_child(amoeba)
+	$body.add_child(amoeba)
+	amoeba.setPosition(Vector2(-10,1))
+	amoeba.setRotation(deg2rad(123))
+	amoebaOnAir = false
+	$body.visible = true

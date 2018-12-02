@@ -5,6 +5,13 @@ enum GAME_STATE{
 	GAME_SCREEN
 }
 
+enum PLAYER_TYPE{RED, BLUE, BIG}
+const PLAYER_TYPE_ANIM = {
+	PLAYER_TYPE.RED : {"Walking" : "Walking", "Idle" : "Idle"},
+	PLAYER_TYPE.BLUE : {"Walking" : "Walking", "Idle" : "Idle"},
+	PLAYER_TYPE.BIG : {"Walking" : "WalkingFat", "Idle" : "IdleFat"}
+}
+
 #Bullets
 enum BULLET_TYPE{STANDARD, THIN, HEAVY, ROUND}
 const BULLET_TYPE_ANIM = {STANDARD : "Standard", THIN : "Thin", HEAVY : "Heavy", ROUND : "Round"}

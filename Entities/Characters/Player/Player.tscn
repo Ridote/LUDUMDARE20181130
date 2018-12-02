@@ -1,28 +1,287 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Entities/Characters/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Sprite-0001.png" type="Texture" id=2]
-[ext_resource path="res://Graphics/gordo.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/Sprites/body.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/Sprites/head.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Sprites/body-red.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Sprites/head.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Characters/Amoeba/Amoeba.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/Sprites/big-body.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Sprites/body-blue.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 
-resource_name = "Walking"
-length = 0.2
-loop = true
+resource_name = "Idle"
+length = 0.1
+loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("body/Body:region_rect")
+tracks/0/path = NodePath("body/Body:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -19, -2, -15, 3, 15, 3, 19, -2, 19, -4, 15, -7, 3, -12, -4, -12, -17, -7 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/RightWeapon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, 14 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/LeftWeapon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( -1, -14 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "IdleFat"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -32, -13, -32, 5, -24, 11, 0, 13, 27, 10, 32, 5, 32, -13, 26, -21, 10, -24, 0, -26, -10, -24, -24, -22 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/RightWeapon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, 24 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/LeftWeapon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0, -24 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Walking"
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Rect2( 64, 0, 64, 64 ), Rect2( 128, 0, 64, 64 ) ]
+"values": [ 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -17, -5, -5, 2, 15, 5, 17, 1, 14, -7, 2, -12, -13, -10 ), PoolVector2Array( -18, 3, -15, 5, 13, -1, 18, -5, 18, -9, 2, -12, -5, -12, -18, -2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/RightWeapon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -5, 12 ), Vector2( 1, 13 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/LeftWeapon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, -12 ), Vector2( -5, -12 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+
+resource_name = "WalkingFat"
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -32, -14, -32, 7, -23, 15, 4, 13, 15, 12, 32, 5, 32, -19, 28, -25, -1, -26, -19, -23 ), PoolVector2Array( -28, -25, 2, -26, 19, -23, 29, -18, 32, -14, 32, 7, 24, 15, -4, 13, -15, 12, -32, 5, -32, -19 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body/LeftWeapon:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -2, -21 ), Vector2( 5, -21 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("body/RightWeapon:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 24 ), Vector2( -4, 25 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "BigGuy"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "Fireman"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "Soldier"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
 }
 
 [node name="Player" type="Node2D"]
@@ -39,7 +298,7 @@ motion/sync_to_physics = false
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 0.5, 0.5 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -60,60 +319,53 @@ editor_draw_limits = false
 editor_draw_drag_margin = false
 
 [node name="RightWeapon" type="Position2D" parent="body"]
-position = Vector2( 0, -0.110184 )
+position = Vector2( 1, 13 )
 
 [node name="LeftWeapon" type="Position2D" parent="body"]
-
-[node name="Bodies" type="Node2D" parent="body"]
-visible = false
-
-[node name="StandardCollisionShape" type="CollisionPolygon2D" parent="body/Bodies"]
-rotation = 1.5708
-build_mode = 0
-polygon = PoolVector2Array( -9, -1, -4, -6, 4.93678, -4.83881, 5.63609, 2.85347, 3.36337, 6.00031, -4, 6, -9, 2 )
-
-[node name="GordoCollisionShape" type="CollisionPolygon2D" parent="body/Bodies"]
-position = Vector2( 0.242985, -0.566963 )
-rotation = 1.5708
-build_mode = 0
-polygon = PoolVector2Array( -11.2902, -3.91442, -0.8419, -6.99222, 9.36344, -3.59044, 9.36344, 5.15699, 1.99292, 10.2597, -7.80745, 9.36871, -12.9911, 2.97013 )
-
-[node name="StandardLeftWeaponPoint" type="Position2D" parent="body/Bodies"]
-position = Vector2( 3.46252, -8.15617 )
-
-[node name="GordoLeftWeaponPoint" type="Position2D" parent="body/Bodies"]
-position = Vector2( 2.3286, -12.1249 )
-
-[node name="StandardRightWeaponPoint" type="Position2D" parent="body/Bodies"]
-position = Vector2( 3.00086, 6.30949 )
-
-[node name="GordoRightWeaponPoint" type="Position2D" parent="body/Bodies"]
-position = Vector2( 3.40583, 8.98231 )
-
-[node name="StandardSprite" type="Sprite" parent="body/Bodies"]
-rotation = 1.5708
-texture = ExtResource( 2 )
-
-[node name="GordoSprite" type="Sprite" parent="body/Bodies"]
-rotation = 1.5708
-texture = ExtResource( 3 )
+position = Vector2( -5, -12 )
 
 [node name="Body" type="Sprite" parent="body"]
-texture = ExtResource( 4 )
-region_enabled = true
+rotation = -1.5708
+texture = ExtResource( 2 )
+hframes = 3
+frame = 2
 region_rect = Rect2( 64, 0, 64, 64 )
 
 [node name="Head" type="Sprite" parent="body/Body"]
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
+rotation = -1.5708
+build_mode = 0
+polygon = PoolVector2Array( -18, 3, -15, 5, 13, -1, 18, -5, 18, -9, 2, -12, -5, -12, -18, -2 )
+
+[node name="Amoeba" parent="body" instance=ExtResource( 4 )]
+position = Vector2( -10, 1 )
+rotation = 2.1485
+scale = Vector2( 0.5, 0.5 )
+
+[node name="MovementAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Walking = SubResource( 1 )
+anims/Idle = SubResource( 1 )
+anims/IdleFat = SubResource( 6 )
+anims/Walking = SubResource( 2 )
+anims/WalkingFat = SubResource( 7 )
+blend_times = [  ]
+
+[node name="Character" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/BigGuy = SubResource( 3 )
+anims/Fireman = SubResource( 4 )
+anims/Soldier = SubResource( 5 )
 blend_times = [  ]
 

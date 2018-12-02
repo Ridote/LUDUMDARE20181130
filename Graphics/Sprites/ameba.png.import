@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/body.png-c895162e6db429cfbeb075e187347b48.stex"
+path="res://.import/ameba.png-fb7b25f050f3add978140e1f94d4c4d7.stex"
 
 [deps]
 
-source_file="res://Graphics/Sprites/body.png"
-dest_files=[ "res://.import/body.png-c895162e6db429cfbeb075e187347b48.stex" ]
+source_file="res://Graphics/Sprites/ameba.png"
+dest_files=[ "res://.import/ameba.png-fb7b25f050f3add978140e1f94d4c4d7.stex" ]
 
 [params]
 

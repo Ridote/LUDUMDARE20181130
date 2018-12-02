@@ -1,8 +1,9 @@
 extends "res://Entities/Characters/Character.gd"
 var weaponFactory = preload("res://Entities/Weapons/Weapon.tscn")
 
-var currentBodyName = ""
-var changingBody = false
+var character = Constants.PLAYER_TYPE.RED
+var previousAnimation = ""
+
 
 func _ready():
 	changeBody("Standard")
@@ -38,9 +39,9 @@ func read_input():
 	if Input.is_action_pressed("ui_left_click"):
 		leftAttack()
 	if Input.is_key_pressed(KEY_G):
-		changeBody("Gordo")
-	if Input.is_key_pressed(KEY_H) and !changingBody:
-		changeBody("Standard")
+		changeBody(Constants.BIG)
+	if Input.is_key_pressed(KEY_H):
+		changeBody(Constants.BLUE)
 		
 	target_vel = target_vel.normalized()
 
@@ -52,31 +53,38 @@ func leftAttack():
 	if children.size() > 0:
 		children[0].attack()
 		
-func changeBody(name):
-	if currentBodyName == name:
-		return
-	changingBody = true
-	print("changeBody", name)
-	var children = $body.get_children()
-	for child in children:
-		if currentBodyName in child.get_name():
-			print("borrando", child.get_name())
-			$body.remove_child(child)
-			$body/Bodies.add_child(child)
-	currentBodyName = name
-	var bodies = $body/Bodies.get_children()
-	for node in bodies:
-		if name in node.get_name() and "LeftWeaponPoint" in node.get_name():
-			$body/LeftWeapon.position = node.position;
-		elif name in node.get_name() and "RightWeaponPoint" in node.get_name():
-			$body/RightWeapon.position = node.position;
-		elif name in node.get_name():
-			$body/Bodies.remove_child(node)
-			$body.add_child(node)
-	changingBody = false
+func changeBody(name) -> void:
+	match(name):
+		Constants.PLAYER_TYPE.RED:
+			$Character.play("Fireman")
+			character = Constants.PLAYER_TYPE.RED
+		Constants.PLAYER_TYPE.BLUE:
+			$Character.play("Soldier")
+			character = Constants.PLAYER_TYPE.BLUE
+		Constants.PLAYER_TYPE.BIG:
+			$Character.play("BigGuy")
+			character = Constants.PLAYER_TYPE.BIG
+	previousAnimation = ""
+	animate()
 
 func animate():
-	pass
+	if(linear_vel.length_squared() > STOP_FACTOR && previousAnimation != "Walking"):
+		match character:
+			Constants.PLAYER_TYPE.BIG:
+				$MovementAnimator.play("WalkingFat")
+				previousAnimation = "Walking"
+			_:
+				$MovementAnimator.play("Walking")
+				previousAnimation = "Walking"
+	elif(linear_vel.length_squared() <= STOP_FACTOR && previousAnimation != "Idle"):
+		match character:
+			Constants.PLAYER_TYPE.BIG:
+				$MovementAnimator.play("IdleFat")
+				previousAnimation = "Idle"
+			_:
+				$MovementAnimator.play("Idle")
+				previousAnimation = "Idle"
+		
 
 func process_collisions():
 	var collider = null

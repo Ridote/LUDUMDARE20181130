@@ -12,6 +12,12 @@ const PLAYER_TYPE_ANIM = {
 	PLAYER_TYPE.BIG : {"Walking" : "WalkingFat", "Idle" : "IdleFat"}
 }
 
+const PLAYER_ATTRIBUTES = {
+	PLAYER_TYPE.RED		: {"MaxHP" : 80.0,	"MaxStamina" : 150.0,	"Armor" : 3, "Speed" : 7},
+	PLAYER_TYPE.BLUE	: {"MaxHP" : 100.0,	"MaxStamina" : 100.0,	"Armor" : 4, "Speed" : 5},
+	PLAYER_TYPE.BIG		: {"MaxHP" : 200.0,	"MaxStamina" : 80.0,	"Armor" : 10, "Speed" : 2}
+}
+
 #Bullets
 enum BULLET_TYPE{STANDARD, THIN, HEAVY, ROUND}
 const BULLET_TYPE_ANIM = {STANDARD : "Standard", THIN : "Thin", HEAVY : "Heavy", ROUND : "Round"}

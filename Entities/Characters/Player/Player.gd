@@ -4,16 +4,30 @@ var weaponFactory = preload("res://Entities/Weapons/Weapon.tscn")
 var character = Constants.PLAYER_TYPE.RED
 var previousAnimation = ""
 
-
 func _ready():
-	changeBody("Standard")
+	init_player(character)
+	changeBody(character)
 	add_to_group(Constants.G_PLAYER)
 	
 	#This is how we create a wepon. Feel free to put this in a function if you don't like it like this, cause you probably will use it in different places
 	var leftWeapon = weaponFactory.instance()
 	$body/LeftWeapon.add_child(leftWeapon)
 	leftWeapon.init(Constants.WEAPON_TYPE.PISTOL, self)
-	
+
+func init_player(_playerType) -> void:
+	character = _playerType
+	var attrs = Constants.PLAYER_ATTRIBUTES[_playerType]
+	maxHP = attrs["MaxHP"]
+	HP = maxHP
+	maxStamina = attrs["MaxStamina"]
+	stamina = maxStamina
+	armor = attrs["Armor"]
+	speed = attrs["Speed"]
+	updateHP(maxHP)
+	updateStamina(maxStamina)
+	updateArmor(armor)
+	updateSpeed(speed)
+
 func _physics_process(delta):
 	read_input()
 	process_skills()
@@ -53,8 +67,9 @@ func leftAttack():
 	if children.size() > 0:
 		children[0].attack()
 		
-func changeBody(name) -> void:
-	match(name):
+func changeBody(bodyType) -> void:
+	init_player(bodyType)
+	match(bodyType):
 		Constants.PLAYER_TYPE.RED:
 			$Character.play("Fireman")
 			character = Constants.PLAYER_TYPE.RED
@@ -101,3 +116,16 @@ func getGlobalPosition():
 
 func getOrientation():
 	return $body.rotation
+
+func updateHP(val : float) -> void:
+	HP = val
+	$HUD/Control/VBoxContainer/HBoxContainer/HPBar.value = HP / maxHP * 100
+func updateStamina(val : float) -> void:
+	stamina = val
+	$HUD/Control/VBoxContainer/HBoxContainer/StaminaBar.value = stamina / maxStamina  * 100
+func updateArmor(val : int) -> void:
+	armor = val
+	$HUD/Control/VBoxContainer/HBoxContainer/ArmorValue.text = str(armor)
+func updateSpeed(val : float) -> void:
+	speed = val
+	$HUD/Control/VBoxContainer/HBoxContainer/SpeedValue.text = str(speed)

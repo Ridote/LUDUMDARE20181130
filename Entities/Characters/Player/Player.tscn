@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Entities/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Sprites/body-red.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Entities/Characters/Amoeba/Amoeba.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Graphics/Sprites/big-body.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Sprites/body-blue.png" type="Texture" id=6]
+[ext_resource path="res://Entities/Interface/HUD.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Animation" id=1]
 
@@ -368,4 +369,6 @@ anims/BigGuy = SubResource( 3 )
 anims/Fireman = SubResource( 4 )
 anims/Soldier = SubResource( 5 )
 blend_times = [  ]
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
 

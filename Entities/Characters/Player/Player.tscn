@@ -1,9 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Entities/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Sprite-0001.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/gordo.png" type="Texture" id=3]
-[ext_resource path="res://Entities/Particles/Water.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Graphics/Sprites/body.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Sprites/head.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "Walking"
+length = 0.2
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body/Body:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Rect2( 64, 0, 64, 64 ), Rect2( 128, 0, 64, 64 ) ]
+}
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -78,8 +98,15 @@ texture = ExtResource( 2 )
 rotation = 1.5708
 texture = ExtResource( 3 )
 
-[node name="Water" parent="body" instance=ExtResource( 4 )]
-rotation = -1.5708
+[node name="Body" type="Sprite" parent="body"]
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 64, 64 )
+
+[node name="Head" type="Sprite" parent="body/Body"]
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("..")
@@ -87,5 +114,6 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
+anims/Walking = SubResource( 1 )
 blend_times = [  ]
 

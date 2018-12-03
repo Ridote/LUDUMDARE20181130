@@ -1,16 +1,38 @@
 extends "res://Entities/Characters/Character.gd"
 
+var distanceToMove : float = 200.0
+
 func _ready():
 	add_to_group(Constants.G_ENEMY)
+	
+	#YOU NEED TO ADD A PARENT TO THE WEAPONS, IN THIS CASE THIS ENEMY
+	$body/LeftWeapon/Weapon.setParent(self)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	process_collisions()
+	var player = get_tree().get_root().get_node("Main/Player")
+	if(player != null):
+		var playerPos = player.getGlobalPosition()
+		$body.look_at(playerPos)
+		if(playerPos.distance_to($body.global_position) > distanceToMove):
+			target_vel = (playerPos - $body.global_position).normalized()
+			move(delta, $body)
+		else:
+			attack()
+
+func attack():
+	var leftWep = $body/LeftWeapon.get_children()
+	if leftWep.size() > 0:
+		leftWep[0].attack()
+	var rightWep = $body/RightWeapon.get_children()
+	if rightWep.size() > 0:
+		rightWep[0].attack()
 
 func process_collisions():
 	var collider = null
 	for i in range($body.get_slide_count()):
 		collider = $body.get_slide_collision(i).get_collider().get_parent()
-		if(collider.is_in_group(Constants.G_AMOEBA)):
+		if(collider != null && collider.is_in_group(Constants.G_AMOEBA)):
 			print("Player collision!!")
 
 func getRightWeapon() -> Object:

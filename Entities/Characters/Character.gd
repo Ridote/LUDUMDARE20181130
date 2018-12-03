@@ -50,8 +50,8 @@ func getOrientation() -> float:
 	return 0.0
 func receiveDmg(val : float = 1.0) -> void:
 	OS.alert(get_name() + " receiveDmg not implemented", "Implementation error")
-func shoot() -> void:
-	OS.alert(get_name() + " shoot not implemented", "Implementation error")
+func attack() -> void:
+	OS.alert(get_name() + " attack not implemented", "Implementation error")
 func getWeapon() -> Object:
 	OS.alert(get_name() + " getWeapon not implemented", "Implementation error")
 	return Object()

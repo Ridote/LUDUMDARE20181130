@@ -1,12 +1,15 @@
 extends "res://Entities/Characters/Character.gd"
+var weaponFactory = preload("res://Entities/Weapons/Weapon.tscn")
 
 var distanceToMove : float = 200.0
 
 func _ready():
 	add_to_group(Constants.G_ENEMY)
 	
-	#YOU NEED TO ADD A PARENT TO THE WEAPONS, IN THIS CASE THIS ENEMY
-	$body/LeftWeapon/Weapon.setParent(self)
+	#This is how we create a wepon. Feel free to put this in a function if you don't like it like this, cause you probably will use it in different places
+	var leftWeapon = weaponFactory.instance()
+	$body/LeftWeapon.add_child(leftWeapon)
+	leftWeapon.init(Constants.WEAPON_TYPE.PISTOL, self)
 
 func _physics_process(delta):
 	process_collisions()

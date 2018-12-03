@@ -15,6 +15,7 @@ func init(_bulletType, position : Vector2, parent : Object) -> void:
 	$body.global_position = position
 	$body.rotation = parent.getOrientation()
 
+	#print("hola1", parent.is_in_group(Constants.G_WEAPON_PLAYER))
 	#We update the masks and layers for collisions depending on the parent
 	if(parent.is_in_group(Constants.G_WEAPON_ENEMY)):
 		$body.collision_layer = 8 #I am bullet enemy
@@ -42,6 +43,7 @@ func init(_bulletType, position : Vector2, parent : Object) -> void:
 func _on_body_body_entered(body):
 	
 	print("I am a bullet and I fucking collided beibi, with " + body.get_parent().get_name())
+	#body.get_parent().receiveDmg()
 	queue_free()
 
 func _on_VisibilityNotifier2D_viewport_exited(_viewport):
